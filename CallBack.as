@@ -19,12 +19,12 @@
 
 		public function handler(e:Event=null):void
 		{
-			// trace('[inside callback]' + this);
+			// append other parameters
 			var all_params:Array = [e].concat(params);
 			this.callback.apply(thisObj, all_params);
 			// clean up
 			if (e != null && dispatcher != null){
-				dispatcher.removeEventListener(e.type, this.callback);
+				this.dispatcher.removeEventListener(e.type, this.callback);
 			}
 		}
 	}
