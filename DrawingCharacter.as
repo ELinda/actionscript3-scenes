@@ -16,7 +16,7 @@
 			super();
 		}
 
-		private function plotLineGraph(bytes:ByteArray, bytes_length:int, i_0:int, g:Graphics,
+		protected function plotLineGraph(bytes:ByteArray, bytes_length:int, i_0:int, g:Graphics,
 									   plot_height:int, x_0:int, dx:int,
 								       annotations:Vector.<TextField>):int{
 			// helper function
@@ -67,7 +67,7 @@
 											   plot_height, g_x, dx, this.annotations);
 			g_x = max_nonzero_i * dx;
 			g.lineTo(g_x, plot_height);
-			trace('max_nonzero_i * dx', g_x);
+			//trace('max_nonzero_i * dx', g_x);
 
 			g.lineStyle(0, 0x00FF00);
 			

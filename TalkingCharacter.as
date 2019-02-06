@@ -20,6 +20,7 @@
 		public var played_urls:Array = new Array();
 		// per documentation, sample rate is 44100 no matter which file loaded
 		const SAMPLE_RATE:int = 44100;
+		public var default_frame_rate:Number = 25;
 		
 		public function TalkingCharacter() {
 			// saying more
@@ -48,7 +49,8 @@
 			
 			// read in one second
 			var avg_mag:Number = 0;
-			var segment_len:int = this.SAMPLE_RATE / stage.frameRate;
+			var frame_rate:Number = stage ? stage.frameRate : this.default_frame_rate;
+			var segment_len:int = this.SAMPLE_RATE / frame_rate;
 			for (var rel_pos:int=0; rel_pos < segment_len; ++rel_pos){
 				var left_chan:Number = this.playing_bytes.readFloat();
 				var right_chan:Number = this.playing_bytes.readFloat();
