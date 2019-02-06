@@ -17,10 +17,11 @@
 		private var frame_secs:Number;
 		public var current:int = 0;
 		private var MAX_FRAMES:int;
+		public var properties:Object = new Object();
 
 		public function Scenes() {
 			// ten seconds
-			this.MAX_FRAMES = 10 * stage.frameRate;
+			this.MAX_FRAMES = 45 * stage.frameRate;
 			
 			// seconds in a frame
 			this.frame_secs = 1.0 / stage.frameRate;
@@ -32,9 +33,14 @@
 			addEventListener(Event.ENTER_FRAME, eachFrame);
 		}
 		
-		function callback(fn:Function): Function{
-			return new CallBack(fn, this).handler;
+		function callback(fn:Function, params:Array=null): Function{
+			return new CallBack(fn, this, params).handler;
 		}
+
+		protected function goto(frame:int):Function{
+			return this.callback(function(){this.gotoAndStop(frame);});
+		}
+
 		// this can be overrideable
 		protected function getIntervalActions(): Vector.<IntervalAction>{
 			return new <IntervalAction>[
